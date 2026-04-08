@@ -1,5 +1,5 @@
 import csv
-from collections import Counter
+import matplotlib.pyplot as plt
 
 
 class BigMac:
@@ -16,8 +16,15 @@ class BigMac:
             for row in csv_reader:
                 lis_1.append(row[self.coll_1])
                 lis_2.append(row[self.coll_2])
-        result = dict(zip(lis_2, lis_1))
-        return result
+            result = dict(zip(lis_2, lis_1))
+        sort_dict = dict(sorted(result.items(), key=lambda x: x[1])) #https://docs-python.ru/tutorial/operatsii-slovarjami-dict-python/sortirovka-slovarja-znacheniju-kljuchu/
+        value_coun = list(sort_dict.keys())
+        value_pr = list(sort_dict.values())
+
+        plt.title("РЯД 1")
+        plt.barh(value_coun, value_pr)
+        pic = plt.show()
+        return pic
     
 
     def __del__(self):
